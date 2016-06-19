@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "mocha"
+    "test": "mocha spec"
   },
   "author": "Hugo Mendes <me@hugomarisco.in>",
   "license": "ISC",
