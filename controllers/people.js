@@ -10,7 +10,7 @@ module.exports = {
   },
 
   update: (req, res) => {
-    const person = req.body;
+    const person = this._pickPerson(req.body);
 
     storage.put(person.index, person);
 
@@ -18,7 +18,7 @@ module.exports = {
   },
 
   delete: (req, res) => {
-    const person = req.body;
+    const person = this._pickPerson(req.body);
 
     storage.remove(person.index);
 
@@ -26,8 +26,14 @@ module.exports = {
   },
 
   create: (req, res) => {
-    storage.append(req.body);
+    const person = this._pickPerson(req.body);
+
+    storage.append(person);
 
     res.redirect('/');
   },
+
+  // Pseudo-private methods
+
+  _pickPerson: (raw) => ({ index: raw.index, firstname: raw.firstname, surname: raw.surname }),
 };

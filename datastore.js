@@ -14,7 +14,7 @@ module.exports = class {
   }
 
   get(index) {
-    if (index === undefined || index === null || index < 0 || !this.records[index]) {
+    if (!this._validKey(index)) {
       throw new TypeError(`Datastore.get(${JSON.stringify(index)}) - index is not valid`);
     }
 
@@ -30,11 +30,11 @@ module.exports = class {
   }
 
   put(index, obj) {
-    if (!obj) {
+    if (!this._validObj(obj)) {
       throw new TypeError(`Datastore.put(${JSON.stringify(obj)}, ${JSON.stringify(obj)}) - object is not valid`);
     }
 
-    if (index === null || index === undefined || index < 0) {
+    if (!this._validKey(index)) {
       throw new TypeError(`Datastore.put(${JSON.stringify(index)}, ${JSON.stringify(obj)}) - index is not valid`);
     }
 
@@ -44,23 +44,23 @@ module.exports = class {
   }
 
   append(obj) {
-    if (obj) {
-      this.records.push(obj);
-
-      this.persist();
-    } else {
+    if (!this._validObj(obj)) {
       throw new TypeError(`Datastore.append(${JSON.stringify(obj)}) - object is not valid`);
     }
+
+    this.records.push(obj);
+
+    this.persist();
   }
 
   remove(index) {
-    if (index >= 0 && this.records[index]) {
-      delete this.records[index];
-
-      this.persist();
-    } else {
+    if (!this._validKey(index)) {
       throw new TypeError(`Datastore.remove(${JSON.stringify(index)}) - index is not valid`);
     }
+
+    delete this.records[index];
+
+    this.persist();
   }
 
   clear() {
@@ -79,5 +79,15 @@ module.exports = class {
 
   persist() {
     fs.writeFileSync(this.path, JSON.stringify(this.records));
+  }
+
+  // Pseudo-private methods
+
+  _validKey(key) {
+    return key !== undefined && key !== null && key >= 0 && this.records[key];
+  }
+
+  _validObj(obj) {
+    return obj !== undefined && obj !== null;
   }
 };
