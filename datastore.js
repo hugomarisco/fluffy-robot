@@ -58,7 +58,7 @@ module.exports = class {
       throw new TypeError(`Datastore.remove(${JSON.stringify(index)}) - index is not valid`);
     }
 
-    delete this.records[index];
+    this.records.splice(index, 1);
 
     this.persist();
   }

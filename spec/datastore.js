@@ -49,6 +49,17 @@ describe('File-based datastore', () => {
     expect(storage.all()[1].firstname).to.equal('Bar');
   });
 
+  it('should not persist null values after delete', () => {
+    expect(storage.all()).to.have.lengthOf(3);
+
+    storage.remove(1);
+
+    const newStorageInstance = new Datastore('test');
+
+    expect(newStorageInstance.all()).to.have.lengthOf(2);
+    expect(newStorageInstance.all()).to.not.include(null);
+  });
+
   it('should throw an error trying to remove invalid indexes', () => {
     expect(() => storage.remove(10)).to.throw(TypeError);
     expect(() => storage.remove(-1)).to.throw(TypeError);
