@@ -1,8 +1,15 @@
 doctype html
 html
   head
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/milligram/1.1.0/milligram.min.css')
     link(rel='stylesheet', href='/stylesheets/app.css')
   body
-    block content
-
+    .container
+      .row
+        .column
+          block content
+      .row
+        .column.column-50.column-offset-25.text-center
+          | Checkout the README & code 
+          a(href="https://github.com/hugomarisco/fluffy-robot") here
     block scripts

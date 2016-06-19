@@ -15,8 +15,8 @@ block content
             input(type='text', name='surname', value=person.surname)
           td
             input(type='hidden', name='index', value=index)
-            input(type='button', value='Delete', class='button button--delete', onclick='setFormAction(#{index}, "/people/delete");')
-            input(type='button', value='Update', class='button button--update', onclick='setFormAction(#{index}, "/people/update");')
+            input(type='button', value='Update', class='button button-small', onclick='setFormAction(#{index}, "/people/update");')
+            input(type='button', value='Delete', class='button button-small button-clear', onclick='setFormAction(#{index}, "/people/delete");')
     form(method='post', action='/people/create', class='form form--users form--users--new')
       tr
         td
@@ -24,6 +24,6 @@ block content
         td
           input(type='text', name='surname')
         td
-          input(type='submit', value='Create', class='button button--create')
+          input(type='submit', value='Create', class='button button-small button-outline')
 block scripts
   script(src='/scripts/app.js')

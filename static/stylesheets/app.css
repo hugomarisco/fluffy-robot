@@ -1,0 +1,14 @@
+input {
+  margin: 0 !important;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.button-small {
+  font-size: .8rem !important;
+  height: 2.8rem !important;
+  line-height: 2.8rem !important;
+  padding: 0 1.5rem !important;
+}
