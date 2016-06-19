@@ -47,6 +47,8 @@ The app is able to list, create, update and delete names leveraging the function
 
 I tried to seperate the concerns as much as possible (routes/controllers/views) lefting only aside models because I think it would be an overkill adding another layer that would behave pretty much as the datastore api itself.
 
+The datastore is a simple abstraction of a javascript array that is persisted in a file everytime a change is made.
+
 ## Things that I would improve if it was a real project
 
 - CSRF protection (using tokens within forms);
