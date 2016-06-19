@@ -17,7 +17,7 @@ module.exports = class {
     if (index >= 0 && this.records[index]) {
       return this.records[index];
     } else {
-      throw new TypeError(`${JSON.stringify(index)} is not a valid index`);
+      throw new TypeError(`Datastore.get(${JSON.stringify(index)}) - index is not valid`);
     }
   }
 
@@ -31,15 +31,15 @@ module.exports = class {
 
   put(index, obj) {
     if (obj) {
-      if (index >= 0 && this.records[index]) {
+      if (index >= 0) {
         this.records[index] = obj;
 
         this.persist();
       } else {
-        throw new TypeError(`${JSON.stringify(index)} is not a valid index`);
+        throw new TypeError(`Datastore.put(${JSON.stringify(index)}, ${JSON.stringify(obj)}) - index is not valid`);
       }
     } else {
-      throw new TypeError(`${JSON.stringify(obj)} is not a valid object`);
+      throw new TypeError(`Datastore.put(${JSON.stringify(obj)}, ${JSON.stringify(obj)}) - object is not valid`);
     }
   }
 
@@ -49,7 +49,7 @@ module.exports = class {
 
       this.persist();
     } else {
-      throw new TypeError(`${JSON.stringify(obj)} is not a valid object`);
+      throw new TypeError(`Datastore.append(${JSON.stringify(obj)}) - object is not valid`);
     }
   }
 
@@ -59,7 +59,7 @@ module.exports = class {
 
       this.persist();
     } else {
-      throw new TypeError(`${JSON.stringify(index)} is not a valid index`);
+      throw new TypeError(`Datastore.remove(${JSON.stringify(index)}) - index is not valid`);
     }
   }
 

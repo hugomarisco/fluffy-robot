@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  form(method='post', action='/people/update')
+    table
+      tr
+        th First name
+        th Last name
+      - each person in people
+        tr
+          td
+            input(type='text', name='people[][firstname]', value=person.firstname)
+          td
+            input(type='text', name='people[][surname]', value=person.surname)
+    input(type='submit', value='OK')
