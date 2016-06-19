@@ -4,6 +4,7 @@
   "description": "Sky test",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "mocha"
   },
   "author": "Hugo Mendes <me@hugomarisco.in>",
