@@ -16,7 +16,7 @@ app.use(logger('dev'));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// app.use('/', express.static('public'));
+app.use(express.static('static'));
 
 app.use(routes);
 

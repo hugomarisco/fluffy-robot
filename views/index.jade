@@ -1,15 +1,29 @@
 extends layout
 
 block content
-  form(method='post', action='/people/update')
-    table
-      tr
-        th First name
-        th Last name
-      - each person in people
+  table
+    tr
+      th First name
+      th Last name
+      th Actions
+    - each person, index in people
+      form(method='post', class='form form--users form--users--#{index}')
         tr
           td
-            input(type='text', name='people[][firstname]', value=person.firstname)
+            input(type='text', name='firstname', value=person.firstname)
           td
-            input(type='text', name='people[][surname]', value=person.surname)
-    input(type='submit', value='OK')
+            input(type='text', name='surname', value=person.surname)
+          td
+            input(type='hidden', name='index', value=index)
+            input(type='button', value='Delete', class='button button--delete', onclick='setFormAction(#{index}, "/people/delete");')
+            input(type='button', value='Update', class='button button--update', onclick='setFormAction(#{index}, "/people/update");')
+    form(method='post', action='/people/create', class='form form--users form--users--new')
+      tr
+        td
+          input(type='text', name='firstname')
+        td
+          input(type='text', name='surname')
+        td
+          input(type='submit', value='Create', class='button button--create')
+block scripts
+  script(src='/scripts/app.js')

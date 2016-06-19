@@ -10,11 +10,23 @@ module.exports = {
   },
 
   update: (req, res) => {
-    const people = req.body.people[0].firstname.map((firstname, index) => {
-      return { firstname, surname: req.body.people[0].surname[index] };
-    });
+    const person = req.body;
 
-    people.forEach((person, index) => storage.put(index, person));
+    storage.put(person.index, person);
+
+    res.redirect('/');
+  },
+
+  delete: (req, res) => {
+    const person = req.body;
+
+    storage.remove(person.index);
+
+    res.redirect('/');
+  },
+
+  create: (req, res) => {
+    storage.append(req.body);
 
     res.redirect('/');
   },

@@ -95,7 +95,8 @@ describe('File-based datastore', () => {
 
   it('should throw an exception trying to update an invalid index', () => {
     expect(() => storage.put(-1, {})).to.throw(TypeError);
-    expect(() => storage.put(10, {})).to.throw(TypeError);
+    expect(() => storage.put(undefined, {})).to.throw(TypeError);
+    expect(() => storage.put(null, {})).to.throw(TypeError);
   });
 
   it('should throw an exception if updated object is invalid', () => {

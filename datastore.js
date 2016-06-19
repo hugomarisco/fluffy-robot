@@ -14,7 +14,7 @@ module.exports = class {
   }
 
   get(index) {
-    if (!index || index < 0 || !this.records[index]) {
+    if (index === undefined || index === null || index < 0 || !this.records[index]) {
       throw new TypeError(`Datastore.get(${JSON.stringify(index)}) - index is not valid`);
     }
 
@@ -30,17 +30,17 @@ module.exports = class {
   }
 
   put(index, obj) {
-    if (obj) {
-      if (index >= 0) {
-        this.records[index] = obj;
-
-        this.persist();
-      } else {
-        throw new TypeError(`Datastore.put(${JSON.stringify(index)}, ${JSON.stringify(obj)}) - index is not valid`);
-      }
-    } else {
+    if (!obj) {
       throw new TypeError(`Datastore.put(${JSON.stringify(obj)}, ${JSON.stringify(obj)}) - object is not valid`);
     }
+
+    if (index === null || index === undefined || index < 0) {
+      throw new TypeError(`Datastore.put(${JSON.stringify(index)}, ${JSON.stringify(obj)}) - index is not valid`);
+    }
+
+    this.records[index] = obj;
+
+    this.persist();
   }
 
   append(obj) {
