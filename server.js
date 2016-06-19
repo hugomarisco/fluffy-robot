@@ -21,18 +21,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(routes);
 
 app.use((req, res, next) => {
-  var err = new Error('Not Found');
+  const err = new Error('Not Found');
+
   err.status = 404;
+
   next(err);
 });
 
 app.use((err, req, res, next) => {
   res.status(err.status || 500);
 
-  res.render('error', {
-    message: err.message,
-    error: err
-  });
+  res.render('error', { message: err.message, error: err });
 });
 
 module.exports = app;

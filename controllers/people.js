@@ -2,14 +2,14 @@
 
 const Datastore = require('../datastore');
 
-let storage = new Datastore('dev');
+const storage = new Datastore('dev');
 
 module.exports = {
-  list: (req, res, next) => {
-    res.render('index', { people: storage.all() });
+  list: (req, res) => {
+    res.render('index', { people: storage.all() });
   },
 
-  update: (req, res, next) => {
+  update: (req, res) => {
     const people = req.body.people[0].firstname.map((firstname, index) => {
       return { firstname, surname: req.body.people[0].surname[index] };
     });

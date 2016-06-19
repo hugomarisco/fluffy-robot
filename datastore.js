@@ -14,11 +14,11 @@ module.exports = class {
   }
 
   get(index) {
-    if (index >= 0 && this.records[index]) {
-      return this.records[index];
-    } else {
+    if (!index || index < 0 || !this.records[index]) {
       throw new TypeError(`Datastore.get(${JSON.stringify(index)}) - index is not valid`);
     }
+
+    return this.records[index];
   }
 
   find(filterFn) {
@@ -80,4 +80,4 @@ module.exports = class {
   persist() {
     fs.writeFileSync(this.path, JSON.stringify(this.records));
   }
-}
+};
