@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "mkdir test-results && mocha spec --reporter xunit --reporter-options test-results/mocha.xml",
+    "test": "mkdir test-results && mocha spec --reporter xunit --reporter-options output=test-results/mocha.xml",
     "docker:build": "docker build -t nodejs-names-hugomarisco .",
     "docker:run": "docker run -it --rm -p 3000:3000 --name hugomarisco-app nodejs-names-hugomarisco",
     "docker:shell": "docker run --rm -ti -p 3000:3000 nodejs-names-hugomarisco /bin/bash"
